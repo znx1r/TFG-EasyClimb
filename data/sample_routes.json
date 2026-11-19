@@ -1,0 +1,212 @@
+[
+  {
+    "route_id": "kb_warmup",
+    "wall_id": "kilter_original_8x12",
+    "name": "Kilter Classic Warmup",
+    "declared_grade_font": "6a",
+    "start_hold_ids": [
+      "h01",
+      "h02"
+    ],
+    "finish_hold_id": "h12",
+    "hold_ids": [
+      "f03",
+      "f05",
+      "f09",
+      "f11",
+      "h01",
+      "h02",
+      "h09",
+      "h17",
+      "h25",
+      "h29",
+      "h36",
+      "h43",
+      "h50",
+      "h12"
+    ]
+  },
+  {
+    "route_id": "kb_crimp_rail",
+    "wall_id": "kilter_original_8x12",
+    "name": "Micro Edge Line",
+    "declared_grade_font": "6c",
+    "start_hold_ids": [
+      "h04",
+      "h01"
+    ],
+    "finish_hold_id": "h56",
+    "hold_ids": [
+      "f02",
+      "f04",
+      "f08",
+      "f10",
+      "h04",
+      "h01",
+      "h08",
+      "h16",
+      "h23",
+      "h28",
+      "h37",
+      "h43",
+      "h50",
+      "h56"
+    ]
+  },
+  {
+    "route_id": "kb_dyno_pillar",
+    "wall_id": "kilter_original_8x12",
+    "name": "Launch Pad 40",
+    "declared_grade_font": "6c+",
+    "start_hold_ids": [
+      "h01",
+      "h02"
+    ],
+    "finish_hold_id": "h12",
+    "hold_ids": [
+      "f04",
+      "f10",
+      "f11",
+      "h01",
+      "h02",
+      "h18",
+      "h31",
+      "h45",
+      "h12"
+    ]
+  },
+  {
+    "route_id": "kb_sloper_arc",
+    "wall_id": "kilter_original_8x12",
+    "name": "Compression Wave",
+    "declared_grade_font": "6c",
+    "start_hold_ids": [
+      "h02",
+      "h06"
+    ],
+    "finish_hold_id": "h57",
+    "hold_ids": [
+      "f05",
+      "f06",
+      "f11",
+      "f12",
+      "h02",
+      "h06",
+      "h21",
+      "h25",
+      "h40",
+      "h46",
+      "h44",
+      "h57"
+    ]
+  },
+  {
+    "route_id": "kb_pinch_symmetry",
+    "wall_id": "kilter_original_8x12",
+    "name": "Twin Pinches",
+    "declared_grade_font": "6b+",
+    "start_hold_ids": [
+      "h04",
+      "h06"
+    ],
+    "finish_hold_id": "h12",
+    "hold_ids": [
+      "f02",
+      "f06",
+      "f09",
+      "f12",
+      "h04",
+      "h06",
+      "h17",
+      "h19",
+      "h22",
+      "h36",
+      "h39",
+      "h41",
+      "h49",
+      "h52",
+      "h12"
+    ]
+  },
+  {
+    "route_id": "kb_pocket_crux",
+    "wall_id": "kilter_original_8x12",
+    "name": "Two-Finger Direct",
+    "declared_grade_font": "7a",
+    "start_hold_ids": [
+      "h01",
+      "h02"
+    ],
+    "finish_hold_id": "h12",
+    "hold_ids": [
+      "f03",
+      "f04",
+      "f05",
+      "f10",
+      "h01",
+      "h02",
+      "h10",
+      "h24",
+      "h30",
+      "h38",
+      "h51",
+      "h12"
+    ]
+  },
+  {
+    "route_id": "kb_diagonal_flow",
+    "wall_id": "kilter_original_8x12",
+    "name": "Left-to-Right Traverse",
+    "declared_grade_font": "6b",
+    "start_hold_ids": [
+      "h03",
+      "h04"
+    ],
+    "finish_hold_id": "h59",
+    "hold_ids": [
+      "f01",
+      "f02",
+      "f08",
+      "f10",
+      "f12",
+      "h03",
+      "h04",
+      "h09",
+      "h17",
+      "h24",
+      "h31",
+      "h39",
+      "h45",
+      "h53",
+      "h59"
+    ]
+  },
+  {
+    "route_id": "kb_static_ladder",
+    "wall_id": "kilter_original_8x12",
+    "name": "Precision Control",
+    "declared_grade_font": "6b+",
+    "start_hold_ids": [
+      "h01",
+      "h02"
+    ],
+    "finish_hold_id": "h12",
+    "hold_ids": [
+      "f03",
+      "f05",
+      "f09",
+      "f11",
+      "h01",
+      "h02",
+      "h10",
+      "h11",
+      "h17",
+      "h24",
+      "h31",
+      "h37",
+      "h43",
+      "h50",
+      "h12"
+    ]
+  }
+]

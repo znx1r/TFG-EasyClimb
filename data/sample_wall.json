@@ -1,21 +1,585 @@
 {
-  "wall_id": "wall_demo_01",
-  "name": "Muro Demo Spray Wall",
-  "width_cm": 300.0,
-  "height_cm": 400.0,
-  "overhang_deg": 25.0,
+  "wall_id": "kilter_original_8x12",
+  "name": "Kilter Board 8×12 Original",
+  "width_cm": 244.0,
+  "height_cm": 366.0,
+  "overhang_deg": 30.0,
   "holds": [
-    { "hold_id": "h01", "x_cm": 120.0, "y_cm": 60.0,  "hold_type": "jug",    "grip_quality": 0.90, "role_allowed": "both" },
-    { "hold_id": "h02", "x_cm": 180.0, "y_cm": 60.0,  "hold_type": "jug",    "grip_quality": 0.90, "role_allowed": "both" },
-    { "hold_id": "h03", "x_cm": 100.0, "y_cm": 120.0, "hold_type": "crimp",  "grip_quality": 0.55, "role_allowed": "both" },
-    { "hold_id": "h04", "x_cm": 75.0,  "y_cm": 175.0, "hold_type": "jug",    "grip_quality": 0.80, "role_allowed": "both" },
-    { "hold_id": "h05", "x_cm": 95.0,  "y_cm": 235.0, "hold_type": "pinch",  "grip_quality": 0.65, "role_allowed": "hand" },
-    { "hold_id": "h06", "x_cm": 120.0, "y_cm": 295.0, "hold_type": "sloper", "grip_quality": 0.45, "role_allowed": "hand" },
-    { "hold_id": "h07", "x_cm": 165.0, "y_cm": 155.0, "hold_type": "sloper", "grip_quality": 0.50, "role_allowed": "hand" },
-    { "hold_id": "h08", "x_cm": 155.0, "y_cm": 265.0, "hold_type": "crimp",  "grip_quality": 0.40, "role_allowed": "hand" },
-    { "hold_id": "h09", "x_cm": 220.0, "y_cm": 130.0, "hold_type": "crimp",  "grip_quality": 0.60, "role_allowed": "both" },
-    { "hold_id": "h10", "x_cm": 245.0, "y_cm": 200.0, "hold_type": "pinch",  "grip_quality": 0.60, "role_allowed": "hand" },
-    { "hold_id": "h11", "x_cm": 205.0, "y_cm": 280.0, "hold_type": "jug",    "grip_quality": 0.75, "role_allowed": "hand" },
-    { "hold_id": "h12", "x_cm": 150.0, "y_cm": 355.0, "hold_type": "jug",    "grip_quality": 0.95, "role_allowed": "hand" }
+    {
+      "hold_id": "h03",
+      "x_cm": 24.0,
+      "y_cm": 76.0,
+      "hold_type": "jug",
+      "grip_quality": 0.88,
+      "role_allowed": "both"
+    },
+    {
+      "hold_id": "h04",
+      "x_cm": 56.0,
+      "y_cm": 76.0,
+      "hold_type": "pinch",
+      "grip_quality": 0.72,
+      "role_allowed": "both"
+    },
+    {
+      "hold_id": "h01",
+      "x_cm": 89.0,
+      "y_cm": 76.0,
+      "hold_type": "jug",
+      "grip_quality": 0.9,
+      "role_allowed": "both"
+    },
+    {
+      "hold_id": "h05",
+      "x_cm": 122.0,
+      "y_cm": 76.0,
+      "hold_type": "sloper",
+      "grip_quality": 0.65,
+      "role_allowed": "both"
+    },
+    {
+      "hold_id": "h02",
+      "x_cm": 155.0,
+      "y_cm": 76.0,
+      "hold_type": "jug",
+      "grip_quality": 0.9,
+      "role_allowed": "both"
+    },
+    {
+      "hold_id": "h06",
+      "x_cm": 188.0,
+      "y_cm": 76.0,
+      "hold_type": "pinch",
+      "grip_quality": 0.72,
+      "role_allowed": "both"
+    },
+    {
+      "hold_id": "h07",
+      "x_cm": 220.0,
+      "y_cm": 76.0,
+      "hold_type": "jug",
+      "grip_quality": 0.88,
+      "role_allowed": "both"
+    },
+    {
+      "hold_id": "h08",
+      "x_cm": 40.0,
+      "y_cm": 109.0,
+      "hold_type": "crimp",
+      "grip_quality": 0.56,
+      "role_allowed": "both"
+    },
+    {
+      "hold_id": "h09",
+      "x_cm": 73.0,
+      "y_cm": 109.0,
+      "hold_type": "jug",
+      "grip_quality": 0.8,
+      "role_allowed": "both"
+    },
+    {
+      "hold_id": "h10",
+      "x_cm": 106.0,
+      "y_cm": 109.0,
+      "hold_type": "crimp",
+      "grip_quality": 0.52,
+      "role_allowed": "both"
+    },
+    {
+      "hold_id": "h11",
+      "x_cm": 138.0,
+      "y_cm": 109.0,
+      "hold_type": "crimp",
+      "grip_quality": 0.52,
+      "role_allowed": "both"
+    },
+    {
+      "hold_id": "h13",
+      "x_cm": 171.0,
+      "y_cm": 109.0,
+      "hold_type": "jug",
+      "grip_quality": 0.8,
+      "role_allowed": "both"
+    },
+    {
+      "hold_id": "h14",
+      "x_cm": 204.0,
+      "y_cm": 109.0,
+      "hold_type": "crimp",
+      "grip_quality": 0.56,
+      "role_allowed": "both"
+    },
+    {
+      "hold_id": "h15",
+      "x_cm": 24.0,
+      "y_cm": 142.0,
+      "hold_type": "sloper",
+      "grip_quality": 0.48,
+      "role_allowed": "both"
+    },
+    {
+      "hold_id": "h16",
+      "x_cm": 56.0,
+      "y_cm": 142.0,
+      "hold_type": "crimp",
+      "grip_quality": 0.46,
+      "role_allowed": "both"
+    },
+    {
+      "hold_id": "h17",
+      "x_cm": 89.0,
+      "y_cm": 142.0,
+      "hold_type": "pinch",
+      "grip_quality": 0.66,
+      "role_allowed": "both"
+    },
+    {
+      "hold_id": "h18",
+      "x_cm": 122.0,
+      "y_cm": 142.0,
+      "hold_type": "volume",
+      "grip_quality": 0.58,
+      "role_allowed": "both"
+    },
+    {
+      "hold_id": "h19",
+      "x_cm": 155.0,
+      "y_cm": 142.0,
+      "hold_type": "pinch",
+      "grip_quality": 0.66,
+      "role_allowed": "both"
+    },
+    {
+      "hold_id": "h20",
+      "x_cm": 188.0,
+      "y_cm": 142.0,
+      "hold_type": "crimp",
+      "grip_quality": 0.46,
+      "role_allowed": "both"
+    },
+    {
+      "hold_id": "h21",
+      "x_cm": 220.0,
+      "y_cm": 142.0,
+      "hold_type": "sloper",
+      "grip_quality": 0.48,
+      "role_allowed": "both"
+    },
+    {
+      "hold_id": "h22",
+      "x_cm": 40.0,
+      "y_cm": 175.0,
+      "hold_type": "pinch",
+      "grip_quality": 0.58,
+      "role_allowed": "both"
+    },
+    {
+      "hold_id": "h23",
+      "x_cm": 73.0,
+      "y_cm": 175.0,
+      "hold_type": "crimp",
+      "grip_quality": 0.42,
+      "role_allowed": "both"
+    },
+    {
+      "hold_id": "h24",
+      "x_cm": 106.0,
+      "y_cm": 175.0,
+      "hold_type": "sloper",
+      "grip_quality": 0.46,
+      "role_allowed": "both"
+    },
+    {
+      "hold_id": "h25",
+      "x_cm": 138.0,
+      "y_cm": 175.0,
+      "hold_type": "sloper",
+      "grip_quality": 0.46,
+      "role_allowed": "both"
+    },
+    {
+      "hold_id": "h26",
+      "x_cm": 171.0,
+      "y_cm": 175.0,
+      "hold_type": "crimp",
+      "grip_quality": 0.42,
+      "role_allowed": "both"
+    },
+    {
+      "hold_id": "h27",
+      "x_cm": 204.0,
+      "y_cm": 175.0,
+      "hold_type": "pinch",
+      "grip_quality": 0.58,
+      "role_allowed": "both"
+    },
+    {
+      "hold_id": "h28",
+      "x_cm": 24.0,
+      "y_cm": 208.0,
+      "hold_type": "crimp",
+      "grip_quality": 0.4,
+      "role_allowed": "hand"
+    },
+    {
+      "hold_id": "h29",
+      "x_cm": 56.0,
+      "y_cm": 208.0,
+      "hold_type": "jug",
+      "grip_quality": 0.76,
+      "role_allowed": "hand"
+    },
+    {
+      "hold_id": "h30",
+      "x_cm": 89.0,
+      "y_cm": 208.0,
+      "hold_type": "pocket",
+      "grip_quality": 0.36,
+      "role_allowed": "hand"
+    },
+    {
+      "hold_id": "h31",
+      "x_cm": 122.0,
+      "y_cm": 208.0,
+      "hold_type": "crimp",
+      "grip_quality": 0.44,
+      "role_allowed": "hand"
+    },
+    {
+      "hold_id": "h32",
+      "x_cm": 155.0,
+      "y_cm": 208.0,
+      "hold_type": "pocket",
+      "grip_quality": 0.36,
+      "role_allowed": "hand"
+    },
+    {
+      "hold_id": "h33",
+      "x_cm": 188.0,
+      "y_cm": 208.0,
+      "hold_type": "jug",
+      "grip_quality": 0.76,
+      "role_allowed": "hand"
+    },
+    {
+      "hold_id": "h34",
+      "x_cm": 220.0,
+      "y_cm": 208.0,
+      "hold_type": "crimp",
+      "grip_quality": 0.4,
+      "role_allowed": "hand"
+    },
+    {
+      "hold_id": "h35",
+      "x_cm": 40.0,
+      "y_cm": 241.0,
+      "hold_type": "sloper",
+      "grip_quality": 0.44,
+      "role_allowed": "hand"
+    },
+    {
+      "hold_id": "h36",
+      "x_cm": 73.0,
+      "y_cm": 241.0,
+      "hold_type": "pinch",
+      "grip_quality": 0.62,
+      "role_allowed": "hand"
+    },
+    {
+      "hold_id": "h37",
+      "x_cm": 106.0,
+      "y_cm": 241.0,
+      "hold_type": "crimp",
+      "grip_quality": 0.38,
+      "role_allowed": "hand"
+    },
+    {
+      "hold_id": "h38",
+      "x_cm": 138.0,
+      "y_cm": 241.0,
+      "hold_type": "crimp",
+      "grip_quality": 0.38,
+      "role_allowed": "hand"
+    },
+    {
+      "hold_id": "h39",
+      "x_cm": 171.0,
+      "y_cm": 241.0,
+      "hold_type": "pinch",
+      "grip_quality": 0.62,
+      "role_allowed": "hand"
+    },
+    {
+      "hold_id": "h40",
+      "x_cm": 204.0,
+      "y_cm": 241.0,
+      "hold_type": "sloper",
+      "grip_quality": 0.44,
+      "role_allowed": "hand"
+    },
+    {
+      "hold_id": "h41",
+      "x_cm": 24.0,
+      "y_cm": 274.0,
+      "hold_type": "pinch",
+      "grip_quality": 0.6,
+      "role_allowed": "hand"
+    },
+    {
+      "hold_id": "h42",
+      "x_cm": 56.0,
+      "y_cm": 274.0,
+      "hold_type": "sloper",
+      "grip_quality": 0.42,
+      "role_allowed": "hand"
+    },
+    {
+      "hold_id": "h43",
+      "x_cm": 89.0,
+      "y_cm": 274.0,
+      "hold_type": "jug",
+      "grip_quality": 0.74,
+      "role_allowed": "hand"
+    },
+    {
+      "hold_id": "h44",
+      "x_cm": 122.0,
+      "y_cm": 274.0,
+      "hold_type": "sloper",
+      "grip_quality": 0.45,
+      "role_allowed": "hand"
+    },
+    {
+      "hold_id": "h45",
+      "x_cm": 155.0,
+      "y_cm": 274.0,
+      "hold_type": "jug",
+      "grip_quality": 0.74,
+      "role_allowed": "hand"
+    },
+    {
+      "hold_id": "h46",
+      "x_cm": 188.0,
+      "y_cm": 274.0,
+      "hold_type": "sloper",
+      "grip_quality": 0.42,
+      "role_allowed": "hand"
+    },
+    {
+      "hold_id": "h47",
+      "x_cm": 220.0,
+      "y_cm": 274.0,
+      "hold_type": "pinch",
+      "grip_quality": 0.6,
+      "role_allowed": "hand"
+    },
+    {
+      "hold_id": "h48",
+      "x_cm": 40.0,
+      "y_cm": 307.0,
+      "hold_type": "crimp",
+      "grip_quality": 0.45,
+      "role_allowed": "hand"
+    },
+    {
+      "hold_id": "h49",
+      "x_cm": 73.0,
+      "y_cm": 307.0,
+      "hold_type": "pinch",
+      "grip_quality": 0.58,
+      "role_allowed": "hand"
+    },
+    {
+      "hold_id": "h50",
+      "x_cm": 106.0,
+      "y_cm": 307.0,
+      "hold_type": "crimp",
+      "grip_quality": 0.4,
+      "role_allowed": "hand"
+    },
+    {
+      "hold_id": "h51",
+      "x_cm": 138.0,
+      "y_cm": 307.0,
+      "hold_type": "crimp",
+      "grip_quality": 0.4,
+      "role_allowed": "hand"
+    },
+    {
+      "hold_id": "h52",
+      "x_cm": 171.0,
+      "y_cm": 307.0,
+      "hold_type": "pinch",
+      "grip_quality": 0.58,
+      "role_allowed": "hand"
+    },
+    {
+      "hold_id": "h53",
+      "x_cm": 204.0,
+      "y_cm": 307.0,
+      "hold_type": "crimp",
+      "grip_quality": 0.45,
+      "role_allowed": "hand"
+    },
+    {
+      "hold_id": "h54",
+      "x_cm": 24.0,
+      "y_cm": 340.0,
+      "hold_type": "jug",
+      "grip_quality": 0.86,
+      "role_allowed": "hand"
+    },
+    {
+      "hold_id": "h55",
+      "x_cm": 56.0,
+      "y_cm": 340.0,
+      "hold_type": "sloper",
+      "grip_quality": 0.5,
+      "role_allowed": "hand"
+    },
+    {
+      "hold_id": "h56",
+      "x_cm": 89.0,
+      "y_cm": 340.0,
+      "hold_type": "jug",
+      "grip_quality": 0.9,
+      "role_allowed": "hand"
+    },
+    {
+      "hold_id": "h12",
+      "x_cm": 122.0,
+      "y_cm": 340.0,
+      "hold_type": "jug",
+      "grip_quality": 0.95,
+      "role_allowed": "hand"
+    },
+    {
+      "hold_id": "h57",
+      "x_cm": 155.0,
+      "y_cm": 340.0,
+      "hold_type": "jug",
+      "grip_quality": 0.9,
+      "role_allowed": "hand"
+    },
+    {
+      "hold_id": "h58",
+      "x_cm": 188.0,
+      "y_cm": 340.0,
+      "hold_type": "sloper",
+      "grip_quality": 0.5,
+      "role_allowed": "hand"
+    },
+    {
+      "hold_id": "h59",
+      "x_cm": 220.0,
+      "y_cm": 340.0,
+      "hold_type": "jug",
+      "grip_quality": 0.86,
+      "role_allowed": "hand"
+    },
+    {
+      "hold_id": "f01",
+      "x_cm": 30.0,
+      "y_cm": 22.0,
+      "hold_type": "foothold",
+      "grip_quality": 0.7,
+      "role_allowed": "foot"
+    },
+    {
+      "hold_id": "f02",
+      "x_cm": 62.0,
+      "y_cm": 22.0,
+      "hold_type": "foothold",
+      "grip_quality": 0.7,
+      "role_allowed": "foot"
+    },
+    {
+      "hold_id": "f03",
+      "x_cm": 94.0,
+      "y_cm": 22.0,
+      "hold_type": "foothold",
+      "grip_quality": 0.7,
+      "role_allowed": "foot"
+    },
+    {
+      "hold_id": "f04",
+      "x_cm": 122.0,
+      "y_cm": 22.0,
+      "hold_type": "foothold",
+      "grip_quality": 0.7,
+      "role_allowed": "foot"
+    },
+    {
+      "hold_id": "f05",
+      "x_cm": 150.0,
+      "y_cm": 22.0,
+      "hold_type": "foothold",
+      "grip_quality": 0.7,
+      "role_allowed": "foot"
+    },
+    {
+      "hold_id": "f06",
+      "x_cm": 182.0,
+      "y_cm": 22.0,
+      "hold_type": "foothold",
+      "grip_quality": 0.7,
+      "role_allowed": "foot"
+    },
+    {
+      "hold_id": "f07",
+      "x_cm": 214.0,
+      "y_cm": 22.0,
+      "hold_type": "foothold",
+      "grip_quality": 0.7,
+      "role_allowed": "foot"
+    },
+    {
+      "hold_id": "f08",
+      "x_cm": 46.0,
+      "y_cm": 42.0,
+      "hold_type": "foothold",
+      "grip_quality": 0.7,
+      "role_allowed": "foot"
+    },
+    {
+      "hold_id": "f09",
+      "x_cm": 78.0,
+      "y_cm": 42.0,
+      "hold_type": "foothold",
+      "grip_quality": 0.7,
+      "role_allowed": "foot"
+    },
+    {
+      "hold_id": "f10",
+      "x_cm": 108.0,
+      "y_cm": 42.0,
+      "hold_type": "foothold",
+      "grip_quality": 0.7,
+      "role_allowed": "foot"
+    },
+    {
+      "hold_id": "f11",
+      "x_cm": 136.0,
+      "y_cm": 42.0,
+      "hold_type": "foothold",
+      "grip_quality": 0.7,
+      "role_allowed": "foot"
+    },
+    {
+      "hold_id": "f12",
+      "x_cm": 166.0,
+      "y_cm": 42.0,
+      "hold_type": "foothold",
+      "grip_quality": 0.7,
+      "role_allowed": "foot"
+    },
+    {
+      "hold_id": "f13",
+      "x_cm": 198.0,
+      "y_cm": 42.0,
+      "hold_type": "foothold",
+      "grip_quality": 0.7,
+      "role_allowed": "foot"
+    }
   ]
 }

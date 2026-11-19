@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EasyClimb — Demo Interactiva</title>
+  <style>
+    :root {
+      --bg: #0b0f17;
+      --panel: #131926;
+      --border: #222b3d;
+      --text: #e6edf3;
+      --muted: #8b949e;
+      --accent: #38bdf8;
+      --crux: #f43f5e;
+      --ok: #22c55e;
+    }
+    * { box-sizing: border-box; font-family: system-ui, -apple-system, sans-serif; }
+    body {
+      margin: 0; padding: 24px; background: var(--bg); color: var(--text);
+      display: flex; justify-content: center;
+    }
+    .layout {
+      display: grid; grid-template-columns: 440px 380px; gap: 24px; max-width: 900px; width: 100%;
+    }
+    .card {
+      background: var(--panel); border: 1px solid var(--border);
+      border-radius: 12px; padding: 20px;
+    }
+    h1 { font-size: 18px; margin: 0 0 4px; }
+    .sub { font-size: 13px; color: var(--muted); margin-bottom: 16px; }
+    svg {
+      width: 100%; height: auto; background: #0d1320;
+      border: 1px solid var(--border); border-radius: 8px; display: block;
+    }
+    .presets { display: flex; gap: 8px; margin-bottom: 16px; }
+    button {
+      flex: 1; background: #1d2638; color: var(--text); border: 1px solid var(--border);
+      padding: 8px 10px; border-radius: 8px; cursor: pointer; font-size: 12px;
+    }
+    button:hover { border-color: var(--accent); }
+    .control { margin-bottom: 12px; }
+    .control label {
+      display: flex; justify-content: space-between; font-size: 13px; margin-bottom: 4px;
+    }
+    .control span { color: var(--accent); font-weight: 600; }
+    input[type="range"] { width: 100%; accent-color: var(--accent); }
+    .stats {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 16px 0;
+    }
+    .stat {
+      background: #0d1320; border: 1px solid var(--border); border-radius: 8px; padding: 10px;
+    }
+    .stat-label { font-size: 11px; color: var(--muted); text-transform: uppercase; }
+    .stat-val { font-size: 20px; font-weight: 700; margin-top: 4px; }
+    .crux-val { color: var(--crux); }
+    .moves { list-style: none; padding: 0; margin: 0; font-size: 13px; }
+    .moves li {
+      display: flex; justify-content: space-between; padding: 6px 8px;
+      border-bottom: 1px solid var(--border);
+    }
+    .moves li.is-crux { background: rgba(244, 63, 94, 0.14); border-radius: 6px; color: #fda4af; }
+    .error {
+      background: rgba(244, 63, 94, 0.15); border: 1px solid var(--crux);
+      color: #fda4af; padding: 10px; border-radius: 8px; font-size: 13px; display: none;
+    }
+    .legend {
+      display: flex; gap: 14px; font-size: 12px; color: var(--muted); margin-top: 10px;
+    }
+    .dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; margin-right: 4px; }
+  </style>
+</head>
+<body>
+  <div class="layout">
+    <div class="card">
+      <h1 id="wall-title">Cargando muro...</h1>
+      <div class="sub">Escala real en cm · Flecha roja = Crux detectado</div>
+      <svg id="wall-svg" viewBox="0 0 300 400"></svg>
+      <div class="legend">
+        <span><i class="dot" style="background:#22c55e"></i>Inicio</span>
+        <span><i class="dot" style="background:#38bdf8"></i>Beta / Top</span>
+        <span><i class="dot" style="background:#f43f5e"></i>Crux</span>
+        <span><i class="dot" style="background:#475569"></i>No usada</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <h1>Perfil del Escalador</h1>
+      <div class="sub">Mueve los controles para recalcular la beta en tiempo real</div>
+
+      <div class="presets">
+        <button onclick="applyPreset(155, 155, 0.2, 0.8)">1,55m Estático</button>
+        <button onclick="applyPreset(188, 192, 0.85, 0.5)">1,88m Dinámico</button>
+      </div>
+
+      <div class="control">
+        <label>Desplome muro <span id="v-overhang">25°</span></label>
+        <input id="overhang_deg" type="range" min="0" max="55" step="1" value="25" />
+      </div>
+      <div class="control">
+        <label>Altura <span id="v-height">175 cm</span></label>
+        <input id="height_cm" type="range" min="145" max="205" step="1" value="175" />
+      </div>
+      <div class="control">
+        <label>Envergadura <span id="v-ape">175 cm</span></label>
+        <input id="ape_index_cm" type="range" min="145" max="215" step="1" value="175" />
+      </div>
+      <div class="control">
+        <label>Afinidad dinámica <span id="v-dyn">0.50</span></label>
+        <input id="dynamic_affinity" type="range" min="0" max="1" step="0.05" value="0.50" />
+      </div>
+      <div class="control">
+        <label>Control estático <span id="v-stat">0.50</span></label>
+        <input id="static_control" type="range" min="0" max="1" step="0.05" value="0.50" />
+      </div>
+      <div class="control">
+        <label>Fuerza regletas (crimp) <span id="v-crimp">0.50</span></label>
+        <input id="crimp_strength" type="range" min="0" max="1" step="0.05" value="0.50" />
+      </div>
+      <div class="control">
+        <label>Control romos (sloper) <span id="v-sloper">0.50</span></label>
+        <input id="sloper_control" type="range" min="0" max="1" step="0.05" value="0.50" />
+      </div>
+
+      <div id="error-box" class="error"></div>
+
+      <div class="stats">
+        <div class="stat">
+          <div class="stat-label">Dificultad numérica</div>
+          <div id="stat-diff" class="stat-val">—</div>
+        </div>
+        <div class="stat">
+          <div class="stat-label">Paso Crux</div>
+          <div id="stat-crux" class="stat-val crux-val">—</div>
+        </div>
+      </div>
+
+      <ul id="moves-list" class="moves"></ul>
+    </div>
+  </div>
+
+  <script>
+    let wallData = null;
+
+    const ids = [
+      "overhang_deg", "height_cm", "ape_index_cm",
+      "dynamic_affinity", "static_control", "crimp_strength", "sloper_control"
+    ];
+
+    function updateLabels() {
+      document.getElementById("v-overhang").textContent = `${document.getElementById("overhang_deg").value}°`;
+      document.getElementById("v-height").textContent = `${document.getElementById("height_cm").value} cm`;
+      document.getElementById("v-ape").textContent = `${document.getElementById("ape_index_cm").value} cm`;
+      document.getElementById("v-dyn").textContent = Number(document.getElementById("dynamic_affinity").value).toFixed(2);
+      document.getElementById("v-stat").textContent = Number(document.getElementById("static_control").value).toFixed(2);
+      document.getElementById("v-crimp").textContent = Number(document.getElementById("crimp_strength").value).toFixed(2);
+      document.getElementById("v-sloper").textContent = Number(document.getElementById("sloper_control").value).toFixed(2);
+    }
+
+    function applyPreset(h, ape, dyn, stat) {
+      document.getElementById("height_cm").value = h;
+      document.getElementById("ape_index_cm").value = ape;
+      document.getElementById("dynamic_affinity").value = dyn;
+      document.getElementById("static_control").value = stat;
+      updateLabels();
+      evaluate();
+    }
+
+    function renderWall(evalData) {
+      const svg = document.getElementById("wall-svg");
+      const W = wallData.width_cm;
+      const H = wallData.height_cm;
+      svg.setAttribute("viewBox", `0 0 ${W} ${H}`);
+
+      const holdMap = Object.fromEntries(wallData.holds.map(h => [h.hold_id, h]));
+      const betaSet = new Set(evalData ? evalData.optimal_beta : []);
+
+      let html = `
+        <defs>
+          <marker id="arrow-ok" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+            <path d="M 0 1 L 10 5 L 0 9 z" fill="#38bdf8" />
+          </marker>
+          <marker id="arrow-crux" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+            <path d="M 0 1 L 10 5 L 0 9 z" fill="#f43f5e" />
+          </marker>
+        </defs>
+      `;
+
+      // Cuadrícula cada 50 cm
+      for (let x = 50; x < W; x += 50) {
+        html += `<line x1="${x}" y1="0" x2="${x}" y2="${H}" stroke="#192234" stroke-width="1" />`;
+      }
+      for (let y = 50; y < H; y += 50) {
+        html += `<line x1="0" y1="${y}" x2="${W}" y2="${y}" stroke="#192234" stroke-width="1" />`;
+      }
+
+      // Flechas de movimientos
+      if (evalData) {
+        for (const m of evalData.moves) {
+          const a = holdMap[m.from_hold];
+          const b = holdMap[m.to_hold];
+          const isCrux = m.from_hold === evalData.crux_move.from_hold && m.to_hold === evalData.crux_move.to_hold;
+          const x1 = a.x_cm, y1 = H - a.y_cm;
+          const x2 = b.x_cm, y2 = H - b.y_cm;
+          const color = isCrux ? "#f43f5e" : "#38bdf8";
+          const marker = isCrux ? "url(#arrow-crux)" : "url(#arrow-ok)";
+          html += `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="${color}" stroke-width="${isCrux ? 3.5 : 2.2}" stroke-dasharray="${isCrux ? '6 3' : ''}" marker-end="${marker}" />`;
+          const mx = (x1 + x2) / 2, my = (y1 + y2) / 2;
+          html += `<text x="${mx + 6}" y="${my}" fill="${color}" font-size="10" font-weight="700">${m.cost.toFixed(1)}</text>`;
+        }
+      }
+
+      // Presas
+      for (const h of wallData.holds) {
+        const cx = h.x_cm;
+        const cy = H - h.y_cm;
+        const inBeta = betaSet.has(h.hold_id);
+        let fill = inBeta ? "#38bdf8" : "#334155";
+        if (h.hold_id === "h01" || h.hold_id === "h02") fill = "#22c55e";
+        if (h.hold_id === "h12") fill = "#0ea5e9";
+        const r = 6 + h.grip_quality * 5;
+        html += `<circle cx="${cx}" cy="${cy}" r="${r}" fill="${fill}" stroke="#0b0f17" stroke-width="2" />`;
+        html += `<text x="${cx}" y="${cy - r - 4}" text-anchor="middle" fill="${inBeta ? '#e6edf3' : '#64748b'}" font-size="10">${h.hold_id} (${h.hold_type})</text>`;
+      }
+
+      svg.innerHTML = html;
+    }
+
+    async function evaluate() {
+      const payload = {};
+      for (const id of ids) payload[id] = Number(document.getElementById(id).value);
+
+      const errBox = document.getElementById("error-box");
+      const res = await fetch("/api/evaluate", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+
+      if (!res.ok) {
+        const err = await res.json();
+        errBox.style.display = "block";
+        errBox.textContent = err.detail || "No hay secuencia viable.";
+        document.getElementById("stat-diff").textContent = "∞";
+        document.getElementById("stat-crux").textContent = "Inviable";
+        document.getElementById("moves-list").innerHTML = "";
+        renderWall(null);
+        return;
+      }
+
+      errBox.style.display = "none";
+      const data = await res.json();
+      document.getElementById("stat-diff").textContent = data.numeric_difficulty.toFixed(2);
+      document.getElementById("stat-crux").textContent = `${data.crux_move.from_hold} → ${data.crux_move.to_hold}`;
+
+      const list = document.getElementById("moves-list");
+      list.innerHTML = data.moves.map(m => {
+        const isCrux = m.from_hold === data.crux_move.from_hold && m.to_hold === data.crux_move.to_hold;
+        return `<li class="${isCrux ? 'is-crux' : ''}">
+          <span>${m.from_hold} → ${m.to_hold} (${m.distance_cm} cm)</span>
+          <span>${m.cost.toFixed(1)} · ${m.viability_band}</span>
+        </li>`;
+      }).join("");
+
+      renderWall(data);
+    }
+
+    async function init() {
+      const res = await fetch("/api/wall");
+      wallData = await res.json();
+      document.getElementById("wall-title").textContent = wallData.name;
+      for (const id of ids) {
+        document.getElementById(id).addEventListener("input", () => {
+          updateLabels();
+          evaluate();
+        });
+      }
+      updateLabels();
+      evaluate();
+    }
+
+    init();
+  </script>
+</body>
+</html>

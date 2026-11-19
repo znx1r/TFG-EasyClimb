@@ -1,5 +1,5 @@
-import itertools
 import math
+from itertools import pairwise
 
 import networkx as nx
 
@@ -7,17 +7,25 @@ from src.engine.biomechanics import classify_viability, euclidean_distance, move
 from src.models.schemas import (
     ClimberProfile,
     EvaluationResult,
+    HoldRole,
     MoveEvaluation,
     Route,
     Wall,
 )
 
 
-def build_wall_graph(wall: Wall, profile: ClimberProfile, allowed_hold_ids: set[str] | None = None) -> nx.DiGraph:
-    """Construye un grafo dirigido ponderado con las transiciones viables."""
+def build_wall_graph(
+    wall: Wall,
+    profile: ClimberProfile,
+    allowed_hold_ids: set[str] | None = None,
+) -> nx.DiGraph:
+    """Construye un grafo dirigido ponderado con las transiciones viables de manos."""
     graph = nx.DiGraph()
     holds = [
-        h for h in wall.holds if allowed_hold_ids is None or h.hold_id in allowed_hold_ids
+        h
+        for h in wall.holds
+        if h.role_allowed != HoldRole.FOOT
+        and (allowed_hold_ids is None or h.hold_id in allowed_hold_ids)
     ]
 
     for hold in holds:
@@ -27,7 +35,6 @@ def build_wall_graph(wall: Wall, profile: ClimberProfile, allowed_hold_ids: set[
         for hold_b in holds:
             if hold_a.hold_id == hold_b.hold_id:
                 continue
-            # Evita retrocesos bruscos hacia abajo; permite progresión lateral o ascendente
             if hold_b.y_cm < hold_a.y_cm - 10.0:
                 continue
 
@@ -55,7 +62,12 @@ def evaluate_route(wall: Wall, route: Route, profile: ClimberProfile) -> Evaluat
         if start_id not in graph or route.finish_hold_id not in graph:
             continue
         try:
-            path = nx.shortest_path(graph, source=start_id, target=route.finish_hold_id, weight="weight")
+            path = nx.shortest_path(
+                graph,
+                source=start_id,
+                target=route.finish_hold_id,
+                weight="weight",
+            )
             total_cost = nx.path_weight(graph, path, weight="weight")
             if total_cost < best_total_cost:
                 best_total_cost = total_cost
@@ -67,7 +79,7 @@ def evaluate_route(wall: Wall, route: Route, profile: ClimberProfile) -> Evaluat
         raise ValueError(f"No existe una secuencia viable para el perfil {profile.user_id}")
 
     moves: list[MoveEvaluation] = []
-    for u, v in itertools.pairwise(best_path):
+    for u, v in pairwise(best_path):
         edge = graph[u][v]
         cost = edge["weight"]
         moves.append(
